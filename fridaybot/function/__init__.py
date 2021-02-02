@@ -61,6 +61,10 @@ from fridaybot.Configs import Config
 import zipfile
 import os
 import aiohttp
+import cv2
+import numpy as np
+import dlib
+import time
 from fridaybot.function.FastTelethon import upload_file
 
 
@@ -126,6 +130,12 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     )
 
 
+def extract_index_nparray(nparray):
+    index = None
+    for num in nparray[0]:
+        index = num
+        break
+    return index
 
 async def progress(current, total, event, start, type_of_ps, file_name=None):
     """Generic progress_callback for uploads and downloads."""
